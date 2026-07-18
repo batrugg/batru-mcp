@@ -1,0 +1,49 @@
+[project]
+name = "batru-mcp"
+version = "0.1.2"
+description = "Read-only MCP server over batru.gg's live, calibrated Dota 2 / Deadlock win-rate prediction and meta API."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Batru", email = "noreply@batru.gg" }]
+keywords = ["mcp", "model-context-protocol", "dota2", "deadlock", "win-prediction", "esports", "batru"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Games/Entertainment",
+]
+dependencies = [
+    "mcp>=1.2.0",
+    "httpx>=0.27.0",
+]
+
+[project.urls]
+Homepage = "https://batru.gg"
+Repository = "https://github.com/batrugg/batru-mcp"
+
+[project.scripts]
+batru-mcp = "batru_mcp.server:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["batru_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# `live` tests hit the real batru.gg API; run them explicitly with -m live.
+markers = ["live: tests that call the real batru.gg API over the network"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

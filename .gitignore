@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Build artifacts
+dist/
+build/
+
+# uv virtualenv
+.venv/
+
+# Local secrets (only .env.example is tracked)
+.env
